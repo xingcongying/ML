@@ -1,0 +1,29 @@
+一、评价指标 AuC，RoC，mAP，Recall，Precision，F1-score
+
+TP预测为正，实际为正 – true positive
+FN预测为负，实际为正 – false negative
+FP预测为正，实际为负 – false positive
+TN预测为负，实际为负 – true negative
+
+有多少比例的次品被检测出来了，有多少比例的次品被模型认为是良品而蒙混过关了，这些比例代表模型的商业价值，对应指标为召回率（Recall）
+R=TP/(TP+FN)
+模型的精度（Precision）P=TP/(TP+FP)
+我们计算模型的准确性时需要同时考虑正类和负类，这也就是多分类问题的常用指标Accuracy=(TP+TN)/(TP+FN+FP+TN)
+两者矛盾
+PR图，以P为纵轴，R为横轴。
+
+F1度量：F1=2*P*R/(P+R),是基于查准率和查全率的调和平均定义的
+1/F1=1/2*(1/R+1/P)
+
+2.ROC  AUC
+ROC曲线是真正率和假正率在不同的阀值下之间的图形表示关系。通常用作权衡模型的敏感度与模型对一个错误分类报警的概率,研究模型泛化能力的好坏
+
+真正率TPR=TP/(TP+FN) 纵轴
+假正率FPR=FP/(FP+TN) 横轴
+
+AUC为曲线下面的面积，作为评估指标，AUC值越大，说明模型越好
+
+AP与mAP
+AP就是Average Precision。在上文中提到，二分类任务中的Precision与分类阈值[公式]的选择有关。因此，我们可以对所有可能的分类阈值计算Precision，然后再取平均，就得到了Average Precision（AP）。
+
+mAP就是mean Average Precision。它是为多分类任务所设计，计算过程中将C分类任务看作是C个二分类任务，然后分别计算每个二分类任务的AP，最后在个任务上求得平均。
